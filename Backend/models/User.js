@@ -46,8 +46,27 @@ const UserSchema = new mongoose.Schema({
     isAdmin:{
         type:Boolean,
         default:false,
-    }
+    },
 
+    description:{
+        type:String,
+        max:50
+    },
+
+    city:{
+        type:String,
+        max:50
+    },
+    from:{ //hometown
+        type:String,
+        max:50
+    },
+
+    relationship:{
+        type:Number,
+        enum:[1, 2, 3]
+    }
+//mozemo kasnije da dodamo kao info model za informacije o korisniku
 },
 {timestamps:true}
 
