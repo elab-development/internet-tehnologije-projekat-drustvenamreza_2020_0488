@@ -62,8 +62,53 @@ try{
 
 
 //follow
-//unfollow
+router.put("/:id/follow", async (req, res)=>{
+    if(req.body.userId !== req.params.id){
+        try{
+            const user = await User.findById(req.params.id)//u linku je koga zelimo da zapratimo
+            const currentUser = await User.findById(req.body.userId)
+            if(!user.followers.includes(req.body.userId)){ //ako kod te osobe koju zelimo da zapratimo se ja vec nalazim u followerima
+                await user.updateOne({$push:{followers:req.body.userId}})
+                await currentUser.updateOne({$push:{followings:req.params.id}})
+                res.status(200).json("Korisnik je zapracen!")
+            }else{
+                res.status(403).json("Vec pratite ovu osobu.")
+            }
 
+        }catch(err){
+            res.status(500).json(err + "greska je")
+        }
+
+
+    }else{
+        res.status(403).json("ne mozes da zapratis samog sebe!");
+    }
+})
+
+
+//unfollow
+router.put("/:id/unfollow", async (req, res)=>{
+    if(req.body.userId !== req.params.id){
+        try{
+            const user = await User.findById(req.params.id)//u linku je koga zelimo da zapratimo
+            const currentUser = await User.findById(req.body.userId)
+            if(user.followers.includes(req.body.userId)){ //ako kod te osobe koju zelimo da zapratimo se ja vec nalazim u followerima
+                await user.updateOne({$pull:{followers:req.body.userId}})
+                await currentUser.updateOne({$pull:{followings:req.params.id}})
+                res.status(200).json("Korisnik je otpracen!")
+            }else{
+                res.status(403).json("Ne pratite ovu osobu.")
+            }
+
+        }catch(err){
+            res.status(500).json(err + "greska je")
+        }
+
+
+    }else{
+        res.status(403).json("ne mozes da otpratis samog sebe!");
+    }
+})
 
 // router.get('/', (req, res)=>{
 // res.send("hey its user route");
