@@ -7,6 +7,9 @@ export default function Feed(){
             <div className="feedWrapp">
                 <Share/>
                 <Post/>
+                <Post/>
+                <Post/>
+                <Post/>
             </div>
         </div>
     )

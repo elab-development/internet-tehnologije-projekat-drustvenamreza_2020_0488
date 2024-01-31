@@ -22,7 +22,7 @@ export default function Post(){
                     <div className="postBottomLeft">
                         <img src="/assets/hearth.png" alt="" className="reactionIcon"/>
                         <img src="/assets/like.png" alt="" className="reactionIcon"/>
-                        <span className="likePostCounter">154 ljudi kaze da im se svidja</span>
+                        <span className="likePostCounter">154 reakcije</span>
                     </div>
                     <div className="postBottomRight">
                     <span className="commentPostCounter">3 komentara</span>
