@@ -5,9 +5,11 @@ import Register from "./pages/register/register";
 import {
   BrowserRouter as Router, Switch, Route,
 } from "react-router-dom";
+import ScrollToTop from "./components/scrollToTop";
 function App() {
   return (
     <Router>
+      <ScrollToTop/>
       <Switch>
         <Route exact path="/">
           <Home />
