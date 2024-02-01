@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const authMiddleware = require("./middleware/authMiddleware");
 
 dotenv.config();
 
@@ -24,17 +25,13 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+// app.use(authMiddleware); //ovde koristimo globalni middleware
+
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
-// app.get('/', (req, res)=>{
-// res.send("Welcome to home page");
-// })
 
-// app.get('/users', (req, res)=>{
-//     res.send("Welcome to user page");
-//     })
 
 app.listen(8800, ()=>{
     console.log("Backend server je pokrenut!")
