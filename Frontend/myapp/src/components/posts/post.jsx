@@ -4,6 +4,7 @@ import { Users } from "../../data"
 import { useState } from "react"
 
 export default function Post({post}){
+
     // pocetne vrednosti su broj reakcija iz data components i false(korisnik nije odreagovao)
     const [like,setLike]=useState(post.reactions)
     const [isLiked,setIsLiked]=useState(false)

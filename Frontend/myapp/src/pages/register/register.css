@@ -52,6 +52,7 @@
 }
 .registerButton{
     height: 50px;
+    width: 380px;
     border: 0;
     background-color: rgb(206, 206, 206);
     color: rgb(2, 17, 67);
@@ -66,6 +67,7 @@
 }
 .loginButton{
     height: 50px;
+    width: 380px;
     border: 0;
     background-color:#86cbe7;
     color: rgb(2, 17, 67);

@@ -1,4 +1,5 @@
 import "./register.css"
+import { Link } from "react-router-dom"
 export default function Register() {
     return (
         <div className="register">
@@ -13,9 +14,13 @@ export default function Register() {
                         <input placeholder="Email" className="registerInput" />
                         <input placeholder="Lozinka" className="registerInput" />
                         <input placeholder="Ponovite lozinku" className="registerInput" />
-                        <button className="registerButton">Registrujte se</button>
+                        <Link to="/login" style={{ textDecoration: 0 }}>
+                            <button className="registerButton">Registrujte se</button>
+                        </Link>
                         <span className="loginDescription">Vec imate nalog?</span>
-                        <button className="loginButton">Ulogujte se</button>
+                        <Link to="/login" style={{ textDecoration: 0 }}>
+                            <button className="loginButton">Ulogujte se</button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import "./login.css"
+import { Link } from "react-router-dom"
 export default function Login() {
     return (
         <div className="login">
@@ -11,9 +12,13 @@ export default function Login() {
                     <div className="loginForm">
                         <input placeholder="Email" className="loginInput" />
                         <input placeholder="Lozinka" className="loginInput" />
-                        <button className="loginButton">Ulogujte se</button>
+                        <Link to="/" style={{ textDecoration: 0 }}>
+                            <button className="loginButton">Ulogujte se</button>
+                        </Link>
                         <span className="forgotPassword">Zaboravili ste lozinku?</span>
-                        <button className="registerButton">Kreirajte novi nalog</button>
+                        <Link to="/register" style={{ textDecoration: 0 }}>
+                            <button className="registerButton">Kreirajte novi nalog</button>
+                        </Link>
                     </div>
                 </div>
             </div>
