@@ -47,6 +47,7 @@ export default function Leftbar() {
                 <button className="leftBarButton">Prikazi vise</button>
                 <hr className="leftBarLine"/>
                 <ui className="leftBarFriendsList">
+                    {/* prolazimo kroz sve usere i vracamo svakog kao parametar za pozvanu metodu */}
                     {Users.map(u=>(
                         <FriendsList key={u.id} user={u}/>
                     ))}
