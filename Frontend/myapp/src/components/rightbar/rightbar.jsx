@@ -59,8 +59,9 @@ export default function Rightbar({ profile }) {
     return (
         <div className="rightBar">
             <div className="rightbarWrapp">
-                {/* <ProfileRightBar /> */}
-                <HomeRightBar />
+                {/* Ukoliko je profile promenljiva prosledjena metodi 
+                poziva se Profilerightbar, u suprotnom Homerightbar*/}
+                {profile ? <ProfileRightBar/>: <HomeRightBar/>}
             </div>
         </div>
     )
