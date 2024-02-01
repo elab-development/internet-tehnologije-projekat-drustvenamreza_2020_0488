@@ -30,30 +30,3 @@
     margin: 0;
     list-style: none;
 }
-.rightbarFriend{
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-.profileIconOnlineFriend{
-    margin-right: 10px;
-    position: relative;
-}
-.profilePictureOnlineFriend{
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-.onlineFriendBadge{
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: greenyellow;
-    position: absolute;
-    right: -1px;
-
-}
-.rightbarOnlineFriendUsername{
-    font-weight: 500;
-}

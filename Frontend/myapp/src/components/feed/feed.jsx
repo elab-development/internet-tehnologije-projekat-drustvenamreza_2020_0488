@@ -1,15 +1,15 @@
 import "./feed.css"
 import Share from "../share/share"
 import Post from "../posts/post"
-export default function Feed(){
-    return(
+import { Posts } from "../../data"
+export default function Feed() {
+    return (
         <div className="feed">
             <div className="feedWrapp">
-                <Share/>
-                <Post/>
-                <Post/>
-                <Post/>
-                <Post/>
+                <Share />
+                {Posts.map((p) => (
+                    <Post key={p.id} post={p}/>
+                ))}
             </div>
         </div>
     )

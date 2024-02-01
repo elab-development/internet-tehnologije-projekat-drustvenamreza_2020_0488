@@ -9,7 +9,7 @@
     position: sticky;
     /*razvlacenje prozora ne remeti raspored*/
     top: 0;
-    z-index: 999;
+    z-index: 999;/* da ostale komponente ne prelaze preko glavnog menija */
 }
 
 .topbarLeft {

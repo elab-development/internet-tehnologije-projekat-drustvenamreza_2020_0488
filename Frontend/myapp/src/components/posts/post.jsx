@@ -1,31 +1,33 @@
 import "./post.css"
 import{MoreVert} from "@mui/icons-material"
-export default function Post(){
+import { Users } from "../../data"
+
+export default function Post({post}){
     return (
         <div className="post">
             <div className="postWrapp">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <img src="/assets/profilePictures/3.jpg" alt="" className="postProfilePicture"/>
-                        <span className="postUsername">Ana Anic</span>
-                        <span className="postTime">15min ago</span>
+                        <img src={Users.filter(u=>u.id===post.userID)[0].profilePicture} alt="" className="postProfilePicture"/>
+                        <span className="postUsername">{Users.filter(u=>u.id===post.userID)[0].username}</span>
+                        <span className="postTime">{post.time}</span>
                     </div>
                     <div className="postTopRight">
                     <MoreVert/>
                     </div>
                 </div>
                 <div className="postCenter">
-                    <span className="postText"> Predivan dan danas.. </span>
-                    <img src="/assets/posts/1.jpg" alt="" className="postImage"/>
+                    <span className="postText"> {post?.photoDescription} </span>
+                    <img src={post.postPhoto} alt="" className="postImage"/>
                 </div>
                 <div className="postBottom">
                     <div className="postBottomLeft">
                         <img src="/assets/hearth.png" alt="" className="reactionIcon"/>
                         <img src="/assets/like.png" alt="" className="reactionIcon"/>
-                        <span className="likePostCounter">154 reakcije</span>
+                        <span className="likePostCounter">{post.reactions}</span>
                     </div>
                     <div className="postBottomRight">
-                    <span className="commentPostCounter">3 komentara</span>
+                    <span className="commentPostCounter">{post.comments}</span>
                     </div>
                 </div>
             </div>

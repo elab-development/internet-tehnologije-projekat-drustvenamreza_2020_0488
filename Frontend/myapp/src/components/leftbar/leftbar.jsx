@@ -1,5 +1,7 @@
 import "./leftbar.css"
 import { RssFeed, Chat, PlayCircleFilledOutlined, Group, Bookmark, HelpOutline, WorkOutline, Event, School } from "@mui/icons-material"
+import { Users } from "../../data"
+import FriendsList from "../friendsList/friendsList"
 export default function Leftbar() {
     return (
         <div className="leftBar">
@@ -45,42 +47,9 @@ export default function Leftbar() {
                 <button className="leftBarButton">Prikazi vise</button>
                 <hr className="leftBarLine"/>
                 <ui className="leftBarFriendsList">
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/2.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Marko Markovic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/3.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Ana Anic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/4.jpeg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Lena Markovic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/5.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Marija Vojvodic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/6.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Vanja Aleksic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/7.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Maja Vukovljak</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/8.jpeg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Aleksa Aleksic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/9.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Vukasin Nikolic</span>
-                    </li>
-                    <li className="leftBarFriend">
-                        <img src="/assets/profilePictures/10.jpg" alt="" className="leftBarFriendImage" />
-                        <span className="leftBarFriendName">Djordje Petrovic</span>
-                    </li>
+                    {Users.map(u=>(
+                        <FriendsList key={u.id} user={u}/>
+                    ))}
                 </ui>
             </div>
         </div>

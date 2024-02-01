@@ -2,6 +2,8 @@
     flex: 3;
     height: calc(100vh - 50px);
     overflow-y: scroll; /* ubacivanje skroa za levi deo fida */
+    position: sticky;/* kada skrolujemo stranicu da ostane 'zalepljeno' */
+    top: 50px;
 }
 /* stilizovanje skrola */
 ::-webkit-scrollbar{
