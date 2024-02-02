@@ -15,16 +15,6 @@ exports.login = async (req, res) => {
      // Kreiranje JWT tokena
      const token = jwt.sign({ userId: user.id, username: user.username }, 'secret');
 
-// try{
-//     const decodedToken = jwt.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NWI5OGEzNzY5YTEzMGNjNTI1N2UwOWIiLCJ1c2VybmFtZSI6ImFuZHJlaiIsImlhdCI6MTcwNjc5MDMxMX0.q-MywuchCnR-pFcyMjg1-PkAX8fj0-0lK5vrlTpxYF0", 'secret');
-//     console.log(token)
-//     console.log("uspeh")
-
-// }catch(err){
-//     console.log("Greskaaa" + err)
-// }
-     
-
      // Slanje tokena u odgovoru
      res.json({ token });
     // res.status(200).json(user);
@@ -65,8 +55,15 @@ exports.logout = async (req, res) => {
     try {
         // Izvući token iz zaglavlja ili iz tela zahteva, zavisno o tome kako ga šaljete
         const token = req.headers.authorization;
-    
-        // Dodati logiku za devalidaciju tokena
+        res.status(200).json("Uspešno ste odjavljeni.");
+      } catch (err) {
+        console.error("Greška pri odjavljivanju:", err);
+        res.status(500).json("Greška pri odjavljivanju.");
+      }
+};
+
+
+// Dodatna logiku za devalidaciju tokena
         // Na primer, možete ga dodati na crnu listu tokena
         // Ova crna lista može biti u bazi podataka, kešu, ili drugom mestu
     
@@ -76,10 +73,3 @@ exports.logout = async (req, res) => {
         // }
     
         // global.blacklist.push(token);
-    
-        res.status(200).json("Uspešno ste odjavljeni.");
-      } catch (err) {
-        console.error("Greška pri odjavljivanju:", err);
-        res.status(500).json("Greška pri odjavljivanju.");
-      }
-};

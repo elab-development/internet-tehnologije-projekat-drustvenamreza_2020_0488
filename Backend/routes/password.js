@@ -10,33 +10,6 @@ const authMiddleware = require("../middleware/authMiddleware");
 const passwordController = require('../controllers/passwordController');
 //dodati middleware ovde
 router.put('/:id/change', passwordController.changePassword);
-// router.put('/:id/change', async (req, res)=>{
-//     if(req.body.userId === req.params.id || req.body.isAdmin){
-
-//         if(req.body.password){
-//             try{
-//                 const salt = await bcrypt.genSalt(10);
-//                 req.body.password = await bcrypt.hash(req.body.password, salt)
-
-//             }catch(err){
-//                 return res.status(500).json(err)
-//             }
-//         }
-
-//         try{
-//             const user = await User.findByIdAndUpdate(req.params.id, {
-//                 $set:req.body
-//             })
-//             res.status(200).json("Password je azuriran")
-
-//         }catch(err){
-//             return res.status(500).json(err + " greskaaa")
-//         }
-
-//     }else{
-//         return res.status(403).json("Mozes da update-ujes samo svoj nalog!")
-//     }
-// })
 
 
 module.exports = router

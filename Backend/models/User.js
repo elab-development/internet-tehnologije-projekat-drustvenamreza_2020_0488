@@ -66,7 +66,7 @@ const UserSchema = new mongoose.Schema({
         type:Number,
         enum:[1, 2, 3]
     }
-//mozemo kasnije da dodamo kao info model za informacije o korisniku
+
 },
 {timestamps:true}
 
