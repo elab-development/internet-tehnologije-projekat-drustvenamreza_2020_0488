@@ -28,7 +28,7 @@ export default function Share() {
                             <span className="shareOptionText">Emoji</span>
                         </div>
                     </div>
-                    <button className="shareButton">Podeli</button>
+                    <button  className="shareButton"> Podeli </button>
                 </div>
             </div>
         </div >

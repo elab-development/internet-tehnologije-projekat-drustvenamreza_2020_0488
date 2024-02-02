@@ -2,6 +2,7 @@ import OnlineFriends from "../onlineFriends/onlineFriends"
 import Friends from "../friendsOnProfilePage/friendsOnProfilePage"
 import "./rightbar.css"
 import { Users } from "../../data"
+import TimeWidget from "../../components/timeWidget"
 
 export default function Rightbar({ profile }) {
 
@@ -47,12 +48,13 @@ export default function Rightbar({ profile }) {
                 </div>
                 <h4 className="rightbarProfileFriendTitle">Prijatelji:</h4>
                 <ui className="rightbarFriends">
-                   {/* prolazimo kroz sve usere i vracamo svakog kao parametar za pozvanu metodu */}
-                   {Users.map(u => (
+                    {/* prolazimo kroz sve usere i vracamo svakog kao parametar za pozvanu metodu */}
+                    {Users.map(u => (
                         <Friends key={u.id} user={u} />
                     ))}
                 </ui>
                 <img src="/assets/ad.png" alt="" className="AdImage" />
+                <TimeWidget />
             </>
         )
     }
@@ -61,7 +63,7 @@ export default function Rightbar({ profile }) {
             <div className="rightbarWrapp">
                 {/* Ukoliko je profile promenljiva prosledjena metodi 
                 poziva se Profilerightbar, u suprotnom Homerightbar*/}
-                {profile ? <ProfileRightBar/>: <HomeRightBar/>}
+                {profile ? <ProfileRightBar /> : <HomeRightBar />}
             </div>
         </div>
     )
