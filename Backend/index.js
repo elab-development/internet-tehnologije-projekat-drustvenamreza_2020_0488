@@ -11,6 +11,8 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
 const filterRoute = require("./routes/filter");
 const passwordRoute = require("./routes/password");
+const timelineRoute = require("./routes/timeline");
+const commentRoute = require("./routes/comment");
 const authMiddleware = require("./middleware/authMiddleware");
 
 dotenv.config();
@@ -34,6 +36,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/filter", filterRoute);
 app.use("/api/password", passwordRoute);
+app.use("/api/timeline", timelineRoute);
+app.use("/api/comment", commentRoute);
 
 
 app.listen(8800, ()=>{
