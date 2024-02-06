@@ -1,59 +1,59 @@
 export const Users = [
     {
         id: 1,
-        profilePicture: "assets/profilePictures/1.jpg",
+        profilePicture: "profilePictures/1.jpg",
         username: "Nikola Simic"
     },
     {
         id: 2,
-        profilePicture: "assets/profilePictures/2.jpg",
+        profilePicture: "profilePictures/2.jpg",
         username: "Marko Markovic"
     },
     {
         id: 3,
-        profilePicture: "assets/profilePictures/3.jpg",
+        profilePicture: "profilePictures/3.jpg",
         username: "Ana Anic"
     },
     {
         id: 4,
-        profilePicture: "assets/profilePictures/4.jpeg",
+        profilePicture: "profilePictures/4.jpeg",
         username: "Lena Markovic"
     },
     {
         id: 5,
-        profilePicture: "assets/profilePictures/5.jpg",
+        profilePicture: "profilePictures/5.jpg",
         username: "Marija Vojvodic"
     },
     {
         id: 6,
-        profilePicture: "assets/profilePictures/6.jpg",
+        profilePicture: "profilePictures/6.jpg",
         username: "Vanja Aleksic"
     },
     {
         id: 7,
-        profilePicture: "assets/profilePictures/7.jpg",
+        profilePicture: "profilePictures/7.jpg",
         username: "Maja Vukovljak"
     },
     {
         id: 8,
-        profilePicture: "assets/profilePictures/8.jpeg",
+        profilePicture: "profilePictures/8.jpeg",
         username: "Aleksa Aleksic"
     },
     {
         id: 9,
-        profilePicture: "assets/profilePictures/9.jpg",
+        profilePicture: "profilePictures/9.jpg",
         username: "Vukasin Nikolic"
     },
     {
         id: 10,
-        profilePicture: "assets/profilePictures/10.jpg",
+        profilePicture: "profilePictures/10.jpg",
         username: "Djordje Petrovic"
     },
 ];
 export const Posts = [
     {
         id: 1,
-        postPhoto: "assets/posts/1.jpg",
+        postPhoto: "posts/1.jpg",
         photoDescription: "Prelep dan danas..",
         time: "15min ago",
         userID: 2,
@@ -62,7 +62,7 @@ export const Posts = [
     },
     {
         id: 2,
-        postPhoto: "assets/posts/2.jpg",
+        postPhoto: "posts/2.jpg",
         time: "13min ago",
         userID: 3,
         reactions: 132,
@@ -70,7 +70,7 @@ export const Posts = [
     },
     {
         id: 3,
-        postPhoto: "assets/posts/3.jpg",
+        postPhoto: "posts/3.jpg",
         photoDescription: "Jesen kao omiljeno godisnje doba",
         time: "46min ago",
         userID: 4,
@@ -79,7 +79,7 @@ export const Posts = [
     },
     {
         id: 4,
-        postPhoto: "assets/posts/4.jpg",
+        postPhoto: "posts/4.jpg",
         photoDescription: "Aestetic",
         time: "18min ago",
         userID: 5,
@@ -88,7 +88,7 @@ export const Posts = [
     },
     {
         id: 5,
-        postPhoto: "assets/posts/5.jpg",
+        postPhoto: "posts/5.jpg",
         photoDescription: "Nista ukusnije nismo jeli",
         time: "32min ago",
         userID: 6,
@@ -97,7 +97,7 @@ export const Posts = [
     },
     {
         id: 6,
-        postPhoto: "assets/posts/6.jpg",
+        postPhoto: "posts/6.jpg",
         photoDescription: "Healthy food day",
         time: "2h ago",
         userID: 7,
@@ -106,7 +106,7 @@ export const Posts = [
     },
     {
         id: 7,
-        postPhoto: "assets/posts/7.jpg",
+        postPhoto: "posts/7.jpg",
         photoDescription: "Netflix tajm",
         time: "2h ago",
         userID: 8,

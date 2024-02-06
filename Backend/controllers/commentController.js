@@ -11,7 +11,7 @@ exports.addComment = async (req, res) => {
         const newComment = new Comment({
             userId: req.body.userId,
             postId: req.body.postId,
-            contenr: req.body.postId
+            content: req.body.content
         })
     
     //save user and return response

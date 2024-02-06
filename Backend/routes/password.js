@@ -9,7 +9,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const passwordController = require('../controllers/passwordController');
 //dodati middleware ovde
-router.put('/:id/change', passwordController.changePassword);
+router.put('/:id/change', authMiddleware, passwordController.changePassword);
 
 
 module.exports = router

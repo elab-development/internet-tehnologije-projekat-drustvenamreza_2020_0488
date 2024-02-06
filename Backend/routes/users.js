@@ -12,7 +12,7 @@ router.put('/:id', userController.updateUser);
 router.delete('/:id', authMiddleware, userController.deleteUser);
 
 //get user
-router.get('/:id', authMiddleware, userController.getUser);
+router.get('/:id', userController.getUser);
 
 //follow
 router.put('/:id/follow', userController.followUser);

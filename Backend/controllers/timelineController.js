@@ -7,9 +7,9 @@ exports.getTimeline = async (req, res) => {
 
     try{
         
-        const currentUser = await User.findById(req.body.userId)
+        const currentUser = await User.findById(req.params.userId)
         const userPosts = await Post.find({userId: currentUser._id})
-        const friendPosts = await Promise.all(
+        const friendPosts = await Promise.all( //ubacuje u kolekciju friendspost sve postove prijatelja
             currentUser.followings.map(friendId=>{
                 return Post.find({userId:friendId})
             })

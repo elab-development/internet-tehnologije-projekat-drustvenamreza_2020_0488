@@ -4,6 +4,7 @@ import Leftbar from "../../components/leftbar/leftbar"
 import Rightbar from "../../components/rightbar/rightbar"
 import Feed from "../../components/feed/feed"
 export default function Profile() {
+    const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
         <>
             <Topbar />
@@ -13,8 +14,8 @@ export default function Profile() {
                 <div className="profilePageRight">
                     <div className="profilePageRightTop">
                         <div className="profileDesign">
-                            <img src="/assets/posts/12.jpg" alt="" className="profilePageCoverPhoto" />
-                            <img src="/assets/profilePictures/1.jpg" alt="" className="profilePageProfilePhoto" />
+                            <img src={`${PublicFolder}posts/12.jpg`} alt="" className="profilePageCoverPhoto" />
+                            <img src={`${PublicFolder}profilePictures/1.jpg`} alt="" className="profilePageProfilePhoto" />
                         </div>
                         <div className="profileInformation">
                             <h4 className="profileInformationName">Nikola Simic</h4>

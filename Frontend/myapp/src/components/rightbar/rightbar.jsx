@@ -6,6 +6,7 @@ import TimeWidget from "../../components/timeWidget"
 
 export default function Rightbar({ profile }) {
 
+    const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     // verzija rightbara za homepage
     const HomeRightBar = () => {
         return (
