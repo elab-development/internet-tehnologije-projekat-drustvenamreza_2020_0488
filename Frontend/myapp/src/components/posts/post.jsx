@@ -19,9 +19,15 @@ export default function Post({post}){
         const fetchUser = async () => {
             console.log(post.userId)
             console.log("HEEEEJ")
-            const res = await axios.get(`users/${post.userId}`)
-            // const res = await axios.get("users/65b94a69a0ced17475b48cba")
-            setUser(res.data)
+            console.log(`users/${post.userId}`)
+
+            try{
+                const res = await axios.get(`/users?userId=${post.userId}`) //ovde mi se poziva get /profile/users
+                setUser(res.data)
+            }catch(err){
+                console.log(err + 'greska')
+            }
+            
         }
         
         fetchUser()

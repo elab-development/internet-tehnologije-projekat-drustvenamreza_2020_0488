@@ -4,7 +4,7 @@ import "./rightbar.css"
 import { Users } from "../../data"
 import TimeWidget from "../../components/timeWidget"
 
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
 
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     // verzija rightbara za homepage
@@ -36,15 +36,15 @@ export default function Rightbar({ profile }) {
                 <div className="rightbarInformation">
                     <div className="rightbarInformationItem">
                         <span className="rightbarInformationItemTitle">Grad:</span>
-                        <span className="rightbarInformationItemName">Beograd</span>
+                        <span className="rightbarInformationItemName">{user.city}</span>
                     </div>
                     <div className="rightbarInformationItem">
                         <span className="rightbarInformationItemTitle">Zemlja:</span>
-                        <span className="rightbarInformationItemName">Srbija</span>
+                        <span className="rightbarInformationItemName">{user.country}</span>
                     </div>
                     <div className="rightbarInformationItem">
                         <span className="rightbarInformationItemTitle">Ljubavni status:</span>
-                        <span className="rightbarInformationItemName">U vezi</span>
+                        <span className="rightbarInformationItemName">{user.relationship === 1 ? "Slobodna/an" : user.relationship === 2 ? "U vezi" : "-"}</span>
                     </div>
                 </div>
                 <h4 className="rightbarProfileFriendTitle">Prijatelji:</h4>
@@ -64,7 +64,7 @@ export default function Rightbar({ profile }) {
             <div className="rightbarWrapp">
                 {/* Ukoliko je profile promenljiva prosledjena metodi 
                 poziva se Profilerightbar, u suprotnom Homerightbar*/}
-                {profile ? <ProfileRightBar /> : <HomeRightBar />}
+                {user ? <ProfileRightBar /> : <HomeRightBar />}
             </div>
         </div>
     )

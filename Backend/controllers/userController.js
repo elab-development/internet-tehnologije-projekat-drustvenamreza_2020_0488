@@ -26,9 +26,11 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.getUser = async (req, res) => {
+    const userId = req.query.userId
+    const username = req.query.username
     try{
 
-        const user = await User.findById(req.params.id)
+        const user = userId ? await User.findById(userId) : await User.findOne({username : username})
         const {password, isAdmin, updatedAt, ...other} = user._doc //pravi dokument i u njega smesta objekat koji sadrzi sve ove propertije
         res.status(200).json(other) //saljemo mu samo other (sve bez napisanih properyija)
     }catch(err){
