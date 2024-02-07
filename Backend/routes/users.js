@@ -14,6 +14,9 @@ router.delete('/:id', authMiddleware, userController.deleteUser);
 //get user
 router.get('/', userController.getUser);
 
+//get friends
+router.get('/friends/:userId', userController.getFriends);
+
 //follow
 router.put('/:id/follow', userController.followUser);
 

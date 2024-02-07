@@ -3,10 +3,29 @@ import Friends from "../friendsOnProfilePage/friendsOnProfilePage"
 import "./rightbar.css"
 import { Users } from "../../data"
 import TimeWidget from "../../components/timeWidget"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import {Link} from "react-router-dom"
 
 export default function Rightbar({ user }) {
 
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [friends, setFriends] = useState([])
+
+
+    useEffect(()=>{
+
+        const getFriends = async ()=>{
+            try {
+                const friendList = await axios.get("/users/friends/"+user._id)
+                setFriends(friendList.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getFriends()
+    },[user._id])
+
     // verzija rightbara za homepage
     const HomeRightBar = () => {
         return (
@@ -48,12 +67,24 @@ export default function Rightbar({ user }) {
                     </div>
                 </div>
                 <h4 className="rightbarProfileFriendTitle">Prijatelji:</h4>
-                <ui className="rightbarFriends">
-                    {/* prolazimo kroz sve usere i vracamo svakog kao parametar za pozvanu metodu */}
-                    {Users.map(u => (
-                        <Friends key={u.id} user={u} />
+                <div className="rightBarFollowings">
+                    {friends.map((friend)=>(
+                        <Link to={"/profile/"+friend.username} style={{ textDecoration: "none" }}>
+
+                        <div className="rightBarFollowing">
+                        <img
+                        src={friend.profilePicture ? PublicFolder+friend.profilePicture : PublicFolder+"noAvatar.png"}
+                        alt=""
+                        className="rightBarFollowingImage"
+                        width="100" 
+                        height="100"
+                        />
+                         <span className="rightbarFollowingName">{friend.username}</span>
+                    </div>
+                    </Link>
                     ))}
-                </ui>
+                    
+                </div>
                 <img src="/assets/ad.png" alt="" className="AdImage" />
                 <TimeWidget />
             </>
