@@ -1,21 +1,23 @@
 import "./feed.css"
 import Share from "../share/share"
 import Post from "../posts/post"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
+import { AuthContext } from "../../context/AuthContext"
 
 export default function Feed({username}) {
 
     const [posts, setPosts] = useState([])
+    const {user} = useContext(AuthContext)
 
     useEffect(()=>{
         const fetchPosts = async () => {
-            const res = username ? await axios.get("/timeline/profile/" + username) : await axios.get("/timeline/65b98a3769a130cc5257e09b")
+            const res = username ? await axios.get("/timeline/profile/" + username) : await axios.get("/timeline/" + user._id)
             setPosts(res.data)
         }
         
         fetchPosts()
-    }, [username]) //renderuje samo jednom feed zbog []
+    }, [username, user._id]) //renderuje samo jednom feed zbog []
     return (
         <div className="feed">
             <div className="feedWrapp">

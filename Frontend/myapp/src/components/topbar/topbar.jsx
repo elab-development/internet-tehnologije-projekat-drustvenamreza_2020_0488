@@ -1,7 +1,13 @@
 import "./topbar.css"//./ jer smo u istom folderu
 import { Search, Person, Chat, Notifications } from "@mui/icons-material"// Search ikonica 
+import { useContext } from "react";
 import { Link } from "react-router-dom"
+import { AuthContext } from "../../context/AuthContext";
 export default function Topbar() {
+
+    const {user} = useContext(AuthContext)
+    const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
+
     return (
         <div className="topbar">
             <div className="topbarLeft">
@@ -39,8 +45,8 @@ export default function Topbar() {
                         <span className="topbarIconNumber">1</span>
                     </div>
                 </div>
-                <Link to="/profile" style={{ textDecoration: 0 }}>
-                    <img src="/assets/profilePictures/1.jpg" alt="" className="profilePicture" />
+                <Link to={`/profile/${user.username}`} style={{ textDecoration: 0 }}>
+                    <img src={user.profilePicture ? PublicFolder+user.profilePicture : PublicFolder+"noAvatar.png"} alt="" className="profilePicture" />
                 </Link>
             </div>
         </div >

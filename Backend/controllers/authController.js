@@ -16,8 +16,8 @@ exports.login = async (req, res) => {
      const token = jwt.sign({ userId: user.id, username: user.username }, 'secret');
 
      // Slanje tokena u odgovoru
-     res.json({ token });
-    // res.status(200).json(user);
+    //  res.json({ token });
+    res.status(200).json(user);
 
     } catch(err){
 

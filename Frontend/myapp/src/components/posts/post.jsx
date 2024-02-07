@@ -2,9 +2,10 @@ import "./post.css"
 import{MoreVert} from "@mui/icons-material"
 //import { useState } from "react"
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import {format} from "timeago.js"
 import {Link} from "react-router-dom"
+import { AuthContext } from "../../context/AuthContext"
 
 export default function Post({post}){
 
@@ -13,7 +14,12 @@ export default function Post({post}){
     const [isLiked,setIsLiked]=useState(false)
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user,setUser]=useState({})
+    const {user:currentUser} = useContext(AuthContext)
 
+
+    useEffect(() =>{
+        setIsLiked(post.likes.includes(currentUser._id))
+    }, [currentUser._id, post.likes])
 
     useEffect(()=>{
         const fetchUser = async () => {
@@ -35,6 +41,12 @@ export default function Post({post}){
 
     
     const likeFunc=()=>{
+        try {
+            axios.put("/posts/"+ post._id+"/like", {userId:currentUser._id})
+        } catch (error) {
+            
+        }
+
         // ako nismo odreagovali klikom povecavamo broj like-ova
         //u suprotnom smanjujemo
         setLike(isLiked ? like-1 : like+1);
@@ -48,7 +60,7 @@ export default function Post({post}){
                     <div className="postTopLeft">
                         <Link to={`profile/${user.username}`}>
                         {/* filter metoda da bismo mogli da pristupimo useru preko spoljnog kljuca u posts */}
-                        <img src={user.profilePicture || PublicFolder+"/noAvatar.png"} alt="" className="postProfilePicture"/>
+                        <img src={user.profilePicture ? PublicFolder+user.profilePicture : PublicFolder+"/noAvatar.png"} alt="" className="postProfilePicture"/>
                         </Link>
                         <span className="postUsername">{user.username}</span>
                         <span className="postTime">{format(post.createdAt)}</span>
