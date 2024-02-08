@@ -3,15 +3,25 @@ import Friends from "../friendsOnProfilePage/friendsOnProfilePage"
 import "./rightbar.css"
 import { Users } from "../../data"
 import TimeWidget from "../../components/timeWidget"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import {Link} from "react-router-dom"
+import { AuthContext } from "../../context/AuthContext"
+import { Add, Remove } from "@mui/icons-material"
 
 export default function Rightbar({ user }) {
 
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     const [friends, setFriends] = useState([])
+    const {user:currentUser, dispatch} = useContext(AuthContext)
+    // const [followed, setFollowed] = useState(
+    //     currentUser.followings.includes(user?._id)
+    //   );
+    const [followed, setFollowed] = useState(false)
 
+    useEffect(()=>{
+        setFollowed(currentUser.followings.includes(user?._id))
+    }, [user])
 
     useEffect(()=>{
 
@@ -24,7 +34,25 @@ export default function Rightbar({ user }) {
             }
         }
         getFriends()
-    },[user._id])
+    },[user])
+
+    const followHandler = async()=>{
+        try {
+            if (followed) {
+              await axios.put(`/users/${user._id}/unfollow`, {
+                userId: currentUser._id,
+              });
+              dispatch({ type: "UNFOLLOW", payload: user._id });
+            } else {
+              await axios.put(`/users/${user._id}/follow`, {
+                userId: currentUser._id,
+              });
+              dispatch({ type: "FOLLOW", payload: user._id });
+            }
+            setFollowed(!followed);
+          } catch (err) {
+          }
+    }
 
     // verzija rightbara za homepage
     const HomeRightBar = () => {
@@ -51,6 +79,12 @@ export default function Rightbar({ user }) {
     const ProfileRightBar = () => {
         return (
             <>
+            {user.username !== currentUser.username && (
+                <button className="rightBarFollowButton" onClick={followHandler}>
+                    {followed ? "Ukloni" : "Dodaj prijatelja"}
+                    {followed ? <Remove/> : <Add/>}
+                    </button>
+            )}
                 <h4 className="rightbarProfileInfoTitle">Informacije o korisniku</h4>
                 <div className="rightbarInformation">
                     <div className="rightbarInformationItem">
@@ -78,7 +112,7 @@ export default function Rightbar({ user }) {
                         className="rightBarFollowingImage"
                         width="100" 
                         height="100"
-                        />
+                        /> <br/>
                          <span className="rightbarFollowingName">{friend.username}</span>
                     </div>
                     </Link>

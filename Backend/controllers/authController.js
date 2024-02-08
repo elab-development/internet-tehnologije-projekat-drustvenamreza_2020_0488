@@ -9,15 +9,21 @@ exports.login = async (req, res) => {
     !user && res.status(404).json("Korisnik nije pronadjen")
 
     const validPassword = await bcrypt.compare(req.body.password, user.password);
-    !validPassword && res.status(400).json("pogresna sifra")
+    if(!validPassword){
+        res.status(400).json("pogresna sifra")
+    }else{
+        console.log("ovo radii")
+        // Kreiranje JWT tokena
+        const token = jwt.sign({ userId: user.id, username: user.username }, 'secret');
+   
+        // Slanje tokena u odgovoru
+       //  res.json({ token });
+       res.status(200).json(user);
+    }
+    // !validPassword && res.status(400).json("pogresna sifra")
 
 
-     // Kreiranje JWT tokena
-     const token = jwt.sign({ userId: user.id, username: user.username }, 'secret');
-
-     // Slanje tokena u odgovoru
-    //  res.json({ token });
-    res.status(200).json(user);
+    
 
     } catch(err){
 
