@@ -21,3 +21,14 @@ export const Unfollow = (userId)=>({
     type:"UNFOLLOW",
     payload:userId
 })
+
+
+export const setSessionData = (data) => {
+    // localStorage.setItem('sessionData', JSON.stringify(data));
+    sessionStorage.setItem('sessionData', JSON.stringify(data));
+    console.log("POSTAVI PODATKE")
+    return {
+      type: 'SET_SESSION_DATA',
+      payload: data
+    };
+  };

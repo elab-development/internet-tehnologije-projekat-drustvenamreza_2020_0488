@@ -30,6 +30,11 @@ const AuthReducer = (state, action) => {
             }
         }
 
+        case "SET_SESSION_DATA": return{
+            ...state,
+            sessionData: action.payload
+        }
+
         default:
             return state
     }

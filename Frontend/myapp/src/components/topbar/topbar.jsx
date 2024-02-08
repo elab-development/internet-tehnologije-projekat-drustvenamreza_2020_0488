@@ -8,6 +8,14 @@ export default function Topbar() {
     const {user} = useContext(AuthContext)
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
+    const handleClick = (e) =>{
+        e.preventDefault()
+        // loginCall({email:email.current.value, password:password.current.value}, dispatch)
+        console.log("kliknuto")
+        sessionStorage.removeItem("sessionData");
+        window.location.reload();
+    }
+
     return (
         <div className="topbar">
             <div className="topbarLeft">
@@ -27,9 +35,7 @@ export default function Topbar() {
                     <Link to="/" style={{ textDecoration: 0 }}>
                         <span className="topbarLink">Pocetna</span>
                     </Link>
-                    <Link to="/profile" style={{ textDecoration: 0 }}>
-                        <span className="topbarLink">Objavljeno</span>
-                    </Link>
+                        <span className="topbarLink" onClick={handleClick}>Logout</span>
                 </div>
                 <div className="topbarIcons">
                     <div className="topbarIconItem">
