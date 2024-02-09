@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios"
 import { SearchResultList } from "../SearchResultList";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 export default function Topbar() {
 
     const {user} = useContext(AuthContext)
@@ -77,7 +79,9 @@ export default function Topbar() {
                     pageSize: 1,
                     username: value
                 }
-            }) //ovde mi se poziva get /profile/users
+            }) 
+            const filteredUsers = res.data.filter(user => user.isAdmin === true);
+            console.log(">>>>>>>>>>", filteredUsers);
             setResults(res.data.sort((a, b)=>{
                 return a.username.localeCompare(b.username);
             }))
@@ -89,11 +93,49 @@ export default function Topbar() {
         }
     }
 
-      const nextPageHandler = (value) =>{
-        // setInput(value)
+      const nextPageHandler = () =>{
+       console.log("SLED")
         setPage(page + 1)
         console.log(page)
-        fetchData2(value)
+        fetchData2(input)
+        
+    }
+
+    const fetchDataFiltered = async (value) =>{
+        console.log(value)
+        try{
+            const res = await axios.get(`/filter/users`,  {
+                params: {
+                    page: page - 1, //hook u sl iteraciji dodaje tako da ovde smanjujem
+                    pageSize: 5,
+                    username: value
+                }
+            }) 
+            const filteredUsers = res.data.filter(user => user.posetilac === true);
+            console.log(">>>>>>>>>>", filteredUsers);
+            setResults(filteredUsers);
+            // console.log(results)
+            
+        }catch(err){
+            
+            console.log(err + 'greska')
+        }
+    }
+
+    const filterHandler = () =>{
+        fetchDataFiltered(input)
+    }
+
+
+    const previousPageHandler = () =>{
+        
+        if(page > 0){
+            setPage(page -1)
+            console.log("PROSLI")
+        }
+        
+        console.log(page)
+        fetchData2(input)
         
     }
 
@@ -108,9 +150,13 @@ export default function Topbar() {
             <div className="topbarCenter">
                 <div className="searchBar">
                     <Search className="searchIcon" />
-                    <input placeholder="Pretrazite prijatelje, postove ili video" className="searchInput" 
+                    <input placeholder="Pretrazite prijatelje" className="searchInput" 
                     value={input} onChange={(e)=>handleChange(e.target.value)}/>
+                    
                     <SearchResultList results={results}/>
+                    <span className="topbarRight" onClick={previousPageHandler}><ArrowBackIcon/></span>
+                    <span className="topbarRight" onClick={filterHandler}>Filter</span>
+                    <span className="topbarRight"><ArrowForwardIcon onClick={nextPageHandler}/></span>
                 </div>
             </div>
             <div className="topbarRight">
