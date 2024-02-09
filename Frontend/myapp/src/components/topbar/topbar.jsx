@@ -94,11 +94,9 @@ export default function Topbar() {
     }
 
       const nextPageHandler = () =>{
-       console.log("SLED")
-        setPage(page + 1)
-        console.log(page)
+       setPage(page => page + 1);
+        console.log("PAGE " + page)
         fetchData2(input)
-        
     }
 
     const fetchDataFiltered = async (value) =>{
@@ -130,11 +128,11 @@ export default function Topbar() {
     const previousPageHandler = () =>{
         
         if(page > 0){
-            setPage(page -1)
+            setPage(page => page - 1);
             console.log("PROSLI")
         }
         
-        console.log(page)
+        console.log("PAGE " + page)
         fetchData2(input)
         
     }

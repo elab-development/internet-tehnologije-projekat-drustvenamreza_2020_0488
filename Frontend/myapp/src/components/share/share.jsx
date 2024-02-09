@@ -12,37 +12,6 @@ export default function Share() {
     const [file, setFile] = useState(null); //hook za upload fajlova
 
     const submitHandler = async (e) => {
-       /* e.preventDefault()
-        const newPost = {
-            userId: user._id,
-            description: description.current.value
-        }
-
-        if(file){
-            const data = new FormData()
-            // const fileName = Date.now() + file.name;
-            const fileName = "logo512.png"; //da bi izbegli kofnlikt ako se uploaduju dva fajla sa istim nazivom
-            data.append("file", file)
-            data.append("name", fileName)
-            newPost.image = fileName
-
-            try {
-                console.log(data)
-                // await axios.post("/upload", data)
-                await axios.post("/upload", {name:"C:/Users/hp/Desktop/logo512.jpg"})
-            } catch (error) {
-                console.log("Pukooo program" + error)
-            }
-
-        }
-
-        try {
-           await axios.post("/posts", newPost)
-        } catch (error) {
-            console.log("Pukooo program" + error)
-        }
-        */
-
         
     e.preventDefault();
     const newPost = {

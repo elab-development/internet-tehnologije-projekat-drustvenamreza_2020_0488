@@ -29,6 +29,7 @@ export default function Post({post}){
         } catch (error) {
             // Obrada greške
             console.log("greskaaaaaa")
+            alert(`Ne mozes da obrises tudji post!`)
             // PopupGfg()
         }
     }

@@ -15,5 +15,6 @@ export const loginCall = async (userCredentials, dispatch) => {
     } catch (err) {
         dispatch({type:"LOGIN_FAILURE", payload:err})
         console.log("Neuspesan login")
+        alert(`Neuspesan login, pokusajte ponovo.`)
     }
 }
