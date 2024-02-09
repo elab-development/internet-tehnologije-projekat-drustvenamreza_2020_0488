@@ -37,8 +37,8 @@ exports.deletePost = async (req, res) => {
     try{
         
         const post = await Post.findById(req.params.id)
-        console.log(req.body.userId)
-        if(post.userId === req.body.userId){
+        console.log(">>>>>>" +req.body.isAdmin)
+        if(post.userId === req.body.userId || req.body.isAdmin){
             await post.deleteOne()
             res.status(200).json("post je obrisan")
         }else{

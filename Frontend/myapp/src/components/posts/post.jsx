@@ -22,7 +22,7 @@ export default function Post({post}){
     const deleteHandler = async () => {
         try {
             const res = await axios.delete(`/posts/${post._id}`, { 
-                data: { userId: currentUser._id } 
+                data: { userId: currentUser._id, isAdmin: currentUser.isAdmin } 
             });
             window.location.reload();
             // Obrada odgovora

@@ -7,9 +7,13 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 exports.filter = async (req, res) => {
     try {
-        const page = parseInt(req.body.page) || 1;
-        const pageSize = parseInt(req.body.pageSize) || 2;
-        const nameFilter = req.body.username;
+      // console.log(req.body.page)
+        // const page = parseInt(req.body.page) || 1;
+        // const pageSize = parseInt(req.body.pageSize) || 2;
+        // const nameFilter = req.body.username;
+        const page = parseInt(req.query.page) || 1;
+const pageSize = parseInt(req.query.pageSize) || 2;
+const nameFilter = req.query.username;
     
         // Formiranje objekta za MongoDB upit
         const query = {};

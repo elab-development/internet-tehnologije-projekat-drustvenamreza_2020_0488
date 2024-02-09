@@ -58,7 +58,7 @@ export default function Feed({username}) {
         <div className="feed">
             {/* <Cache /> */}
             <div className="feedWrapp">
-                {(!username || username===user.username) && <Share />}
+                {(!username || username===user.username) && user.posetilac===false && <Share />}
                 {posts.map((p) => (
                     <Post key={p._id} post={p}/>
                 ))}
