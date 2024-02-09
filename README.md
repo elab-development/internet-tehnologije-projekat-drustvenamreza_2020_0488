@@ -4,16 +4,17 @@ Koraci za pokretanje:
 2. Pokretanje backend Node.js aplikacije
   2.1 Otvoriti novi terminal, uneti i izvršiti sledeće naredbe:
    cd Backend
+   npm init
    npm install
    npm start
-3. Kreirati online MongoDb bazu, izvršiti izmene za putanju ka sopstvenoj bazi u .env fajlu, kao i JSON fajlu za migracije
+4. Kreirati online MongoDb bazu, izvršiti izmene za putanju ka sopstvenoj bazi u .env fajlu, kao i JSON fajlu za migracije
    3.1 Za izvršavanje migracija ka bazi otvoriti novi terminal, uneti i izvršiti sledeće naredbe:
      3.1.1 za izvrsavanje efekta migracije:
       migrate-mongo up
      3.1.2 za poništavanje efekta migracije (rollback):
      migrate-mongo down
   
-4. Pokretanje frontend React aplikacije
+5. Pokretanje frontend React aplikacije
    4.1 Otvoriti novi terminal, uneti i izvršiti sledeće naredbe:
    cd Frontend
    cd myapp
