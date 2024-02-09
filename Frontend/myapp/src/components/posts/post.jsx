@@ -6,6 +6,9 @@ import { useContext, useEffect, useState } from "react"
 import {format} from "timeago.js"
 import {Link} from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext"
+import 'reactjs-popup/dist/index.css';
+import Popup from 'reactjs-popup';
+import PopupGfg from "../popUp"
 
 export default function Post({post}){
 
@@ -15,6 +18,20 @@ export default function Post({post}){
     const PublicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
     const [user,setUser]=useState({})
     const {user:currentUser} = useContext(AuthContext)
+
+    const deleteHandler = async () => {
+        try {
+            const res = await axios.delete(`/posts/${post._id}`, { 
+                data: { userId: currentUser._id } 
+            });
+            window.location.reload();
+            // Obrada odgovora
+        } catch (error) {
+            // Obrada greške
+            console.log("greskaaaaaa")
+            // PopupGfg()
+        }
+    }
 
 
     useEffect(() =>{
@@ -65,8 +82,14 @@ export default function Post({post}){
                         <span className="postUsername">{user.username}</span>
                         <span className="postTime">{format(post.createdAt)}</span>
                     </div>
+                    
                     <div className="postTopRight">
-                    <MoreVert/>
+            <Popup trigger=
+                {<MoreVert/>}
+                position="right center">
+                <div>Opcije</div>
+                <button onClick={deleteHandler}>Obrisi post</button>
+            </Popup>
                     </div>
                 </div>
                 <div className="postCenter">

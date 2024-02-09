@@ -19,6 +19,32 @@ export default function Rightbar({ user }) {
     //   );
     const [followed, setFollowed] = useState(false)
 
+    //prognoza
+    const api ={
+        key: '12dc0bba18f28a1f59af39c759472804',
+        base:'https://api.openweathermap.org/data/2.5/'
+    }
+
+    //user je onaj ciji profil gledamo, a currentUser je alijas na ulogovanog korisnika
+    const [search, setSearch] = useState("Belgrade")//ovde stavimo pocetni search recimo beograd
+    const [weather, setWeather] = useState({});
+
+    const searchPressed = () => {
+    fetch(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
+    .then((res) => res.json())
+    .then((result) => {
+      setWeather(result);
+    console.log(result)
+    });
+    }
+
+    useEffect(() => {
+        // Pozivamo setSearch da postavimo vrednost search
+        // setSearch(user.city);
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>" + user.city)
+        searchPressed()//Pozivamo f.ju da postavi vrednost za prognozu
+      }, []);
+
     useEffect(()=>{
         setFollowed(currentUser.followings.includes(user?._id))
     }, [user])
@@ -121,6 +147,28 @@ export default function Rightbar({ user }) {
                 </div>
                 <img src="/assets/ad.png" alt="" className="AdImage" />
                 <TimeWidget />
+
+                <h4>Vremenska prognoza</h4>
+                {/* <input type="text" placeholder="Pretrazi" onChange={(e)=>setSearch(e.target.value)}/>
+                <button onClick={searchPressed}>Pretraga</button> */}
+
+                
+                {typeof weather.main !== "undefined" ? (
+          <div>
+            {/* Location  */}
+            <p>{weather.name}</p>
+
+            {/* Temperature Celsius  */}
+            <p>{weather.main.temp}°C</p>
+
+            {/* Condition (Sunny ) */}
+            <p>{weather.weather[0].main}</p>
+            <p>({weather.weather[0].description})</p>
+          </div>
+        ) : (
+          "ucitava se prognoza"
+        )}
+                
             </>
         )
     }

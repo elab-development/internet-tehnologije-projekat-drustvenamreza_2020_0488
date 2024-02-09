@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const multer = require("multer");
 const path = require("path")
+const nodemailer = require('nodemailer');
 
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -54,6 +55,46 @@ app.post("/api/upload", upload.single("file"), (req, res)=>{
         return res.status(200).json("FIle je uspesno uploadovan!")
     } catch (error) {
         console.log(error)
+    }
+})
+
+
+// Konfiguracija transporter-a za slanje emaila
+const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'freespech87@gmail.com',
+      pass: '^mw&3qzF5!5p2o@a'
+    }
+  });
+  
+  // Opcije emaila
+  const mailOptions = {
+    from: 'krkicandrej@yahoo.com',
+    to: 'andrejkrkic46@gmail.com',
+    subject: 'Test Email',
+    text: 'This is a test email sent from Node.js using nodemailer.'
+  };
+  
+  
+
+  app.get("/api/forgot", (req, res)=>{
+    try {
+       
+
+        // Slanje emaila
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.error('Error occurred:', error);
+      res.status(500).json(error + " greskaa")
+    } else {
+      console.log('Email sent:', info.response);
+      res.status(200).json("poslato");
+    }
+  });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json(err + " greskaa")
     }
 })
 

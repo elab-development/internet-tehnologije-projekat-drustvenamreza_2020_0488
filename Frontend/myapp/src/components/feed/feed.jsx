@@ -4,11 +4,45 @@ import Post from "../posts/post"
 import { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext"
+import React, { useMemo } from 'react';
+import Cache from "../cache"
 
 export default function Feed({username}) {
 
     const [posts, setPosts] = useState([])
     const {user} = useContext(AuthContext)
+
+
+    const processData = (userData) => {
+        // Skupa logika za obradu podataka korisnika
+        // Na primer, transformacija podataka, filtriranje, itd.
+        return userData;
+      };
+
+    // const MyComponent = ({ data }) => {
+    //     const cachedData = useMemo(() => {
+    //       // Skupa logika za obradu podataka
+    //       return processData(data);
+    //     }, [data]); // Zavisi samo od promene 'data'
+      
+    //     return <div>{cachedData}</div>;
+    //   };
+
+    const MyComponent = () => {
+        const cachedString = useMemo(() => {
+          return "podatak";
+        }, []); // Ovde ne navodimo nikakve zavisnosti jer se vrednost neće menjati
+      
+        return <div>{cachedString}</div>;
+      };
+
+    //   const ChildComponent = ({ cachedData }) => {
+    //     return (
+    //       <div>
+    //         <p>Keširan podatak: {cachedData}</p>
+    //       </div>
+    //     );
+    //   };
 
     useEffect(()=>{
         const fetchPosts = async () => {
@@ -22,6 +56,7 @@ export default function Feed({username}) {
     }, [username, user._id]) //renderuje samo jednom feed zbog []
     return (
         <div className="feed">
+            {/* <Cache /> */}
             <div className="feedWrapp">
                 {(!username || username===user.username) && <Share />}
                 {posts.map((p) => (
